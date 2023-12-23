@@ -21,7 +21,8 @@
 
                 <h2 class="text-2xl font-bold text-center">Eloquent Relationshps</h2>
 
-                <h3 class="text-xl text-center italic my-4">One to One</h3>
+                {{-- ONE TO ONE --}}
+                {{-- <h3 class="text-xl text-center italic my-4">One to One</h3>
 
                 <div class="flex flex-col space-y-4">
                     <div class="flex justify-between">
@@ -35,6 +36,26 @@
                             Character user's username:
                         </p>
                         <p class="ml-8">{{ $character->user->name }}</p>
+                    </div>
+                </div> --}}
+
+                {{-- ONE TO MANY --}}
+                <h3 class="text-xl text-center italic my-4">One to Many</h3>
+
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between">
+                        <p class="text-green-500">
+                            User's messages:
+                        </p>
+                        @foreach ($user->messages as $message)
+                            <p class="ml-8">{{ $message->id }} - {{ $message->body }}</p>
+                        @endforeach
+                    </div>
+                    <div class="flex justify-between">
+                        <p class="text-green-500">
+                            Message User's Name:
+                        </p>
+                        <p class="ml-8">{{ $message->user->name }}</p>
                     </div>
                 </div>
             </div>

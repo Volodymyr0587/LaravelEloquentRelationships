@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Character;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -39,10 +40,47 @@ Route::get('/', function () {
 
     //* CHARaCTER BELONGS TO USER
 
+    // $user = User::first();
+    // $character = $user->character;
+    // return view('welcome', [
+    //     'user' => $user,
+    //     'character' => $character,
+    // ]);
+
+
+
+
+      /**
+     *  ONE TO MANY
+     */
+    //* USER HAS MANY MESSAGES
+
+    // User::create([
+    //     'name' => fake()->name(),
+    //     'email' => fake()->unique()->safeEmail(),
+    //     'password' => Hash::make('password'),
+    // ]);
+
+    // $user = User::first();
+
+    // $message1 = $user->messages()->create([
+    //     'body' => fake()->words(4, true),
+    // ]);
+
+    // $message2 = $user->messages()->create([
+    //     'body' => fake()->words(5, true),
+    // ]);
+
+    // return view('welcome', [
+    //     'user' => $user,
+    // ]);
+
+    // //* MANY MESSAGES BELONG TO USER
+
     $user = User::first();
-    $character = $user->character;
+    $message = Message::query()->where('user_id', $user->id)->first();
     return view('welcome', [
         'user' => $user,
-        'character' => $character,
+        'message' => $message,
     ]);
 });
