@@ -40,7 +40,7 @@
                 </div> --}}
 
                 {{-- ONE TO MANY --}}
-                <h3 class="text-xl text-center italic my-4">One to Many</h3>
+                {{-- <h3 class="text-xl text-center italic my-4">One to Many</h3>
 
                 <div class="flex flex-col space-y-4">
                     <div class="flex justify-between">
@@ -56,8 +56,50 @@
                             Message User's Name:
                         </p>
                         <p class="ml-8">{{ $message->user->name }}</p>
+                    </div> --}}
+
+                    {{-- Belongs To Many --}}
+                    <h3 class="text-xl text-center italic my-4">Belongs to Many</h3>
+
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Gift 1's stuff:
+                            </p>
+                            @foreach ($firstGifts as $first)
+                                <p class="ml-8">{{ $first->id }} - {{ $first->name }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Gift 2's stuff:
+                            </p>
+                            @foreach ($secondGifts as $second)
+                                <p class="ml-8">{{ $second->id }} - {{ $second->name }}</p>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Stuff 1's gifts:
+                            </p>
+                            @foreach ($firstStuffs as $first)
+                                <p class="ml-8">{{ $first->id }} - {{ $first->type }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Stuff 2's gifts:
+                            </p>
+                            @foreach ($secondStuffs as $second)
+                                <p class="ml-8">{{ $second->id }} - {{ $second->type }}</p>
+                            @endforeach
+                        </div>
+                    </div>
             </div>
         </div>
     </body>

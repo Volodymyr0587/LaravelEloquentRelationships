@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Character;
+use App\Models\Gift;
 use App\Models\Message;
+use App\Models\Stuff;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +52,7 @@ Route::get('/', function () {
 
 
 
-      /**
+    /**
      *  ONE TO MANY
      */
     //* USER HAS MANY MESSAGES
@@ -77,10 +79,60 @@ Route::get('/', function () {
 
     // //* MANY MESSAGES BELONG TO USER
 
-    $user = User::first();
-    $message = Message::query()->where('user_id', $user->id)->first();
+    // $user = User::first();
+    // $message = Message::query()->where('user_id', $user->id)->first();
+    // return view('welcome', [
+    //     'user' => $user,
+    //     'message' => $message,
+    // ]);
+
+
+    /**
+     *  BELONGS TO MANY
+     */
+    //* STUFF BELONGS TO MANY GIFTS
+
+    // $stuff1 = Stuff::create([
+    //     'name' => fake()->word(),
+    // ]);
+
+    // $stuff2 = Stuff::create([
+    //     'name' => fake()->word(),
+    // ]);
+
+    // $stuff3 = Stuff::create([
+    //     'name' => fake()->word(),
+    // ]);
+
+    // $stuff4 = Stuff::create([
+    //     'name' => fake()->word(),
+    // ]);
+
+    // $gift1 = Gift::create([
+    //     'type' => fake()->word(),
+    // ])->stuffs()->attach([$stuff1->id, $stuff2->id, $stuff3->id, $stuff4->id]);
+
+    // $gift2 = Gift::create([
+    //     'type' => fake()->word(),
+    // ])->stuffs()->attach([$stuff1->id, $stuff2->id]);
+
+    $gift1 = Gift::find(1);
+    $gift2 = Gift::find(2);
+
+    $firstGifts = $gift1->stuffs;
+    $secondGifts = $gift2->stuffs;
+
+    // //* GIFTS BELONG TO MANY STUFFS
+    $stuff1 = Stuff::find(1);
+    $stuff2 = Stuff::find(2);
+
+    $firstStuffs = $stuff1->gifts;
+    $secondStuffs = $stuff2->gifts;
+
     return view('welcome', [
-        'user' => $user,
-        'message' => $message,
+        'firstGifts' => $firstGifts,
+        'secondGifts' => $secondGifts,
+        'firstStuffs' => $firstStuffs,
+        'secondStuffs' => $secondStuffs,
     ]);
 });
