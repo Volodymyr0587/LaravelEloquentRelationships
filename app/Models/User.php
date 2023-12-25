@@ -3,12 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class User extends Authenticatable
 {
@@ -58,5 +59,25 @@ class User extends Authenticatable
    public function messages(): HasMany
    {
        return $this->hasMany(Message::class);
+   }
+
+   /**
+    * Get all of the gifts for the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function gifts(): HasMany
+   {
+       return $this->hasMany(Gift::class);
+   }
+
+   /**
+    * Get all of the stuffs for the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    */
+   public function stuffs(): HasManyThrough
+   {
+       return $this->hasManyThrough(Stuff::class, Gift::class);
    }
 }

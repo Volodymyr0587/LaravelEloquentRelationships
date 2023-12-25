@@ -116,23 +116,91 @@ Route::get('/', function () {
     //     'type' => fake()->word(),
     // ])->stuffs()->attach([$stuff1->id, $stuff2->id]);
 
-    $gift1 = Gift::find(1);
-    $gift2 = Gift::find(2);
+    // $gift1 = Gift::find(1);
+    // $gift2 = Gift::find(2);
 
-    $firstGifts = $gift1->stuffs;
-    $secondGifts = $gift2->stuffs;
+    // $firstGifts = $gift1->stuffs;
+    // $secondGifts = $gift2->stuffs;
 
-    // //* GIFTS BELONG TO MANY STUFFS
-    $stuff1 = Stuff::find(1);
-    $stuff2 = Stuff::find(2);
+    // // //* GIFTS BELONG TO MANY STUFFS
+    // $stuff1 = Stuff::find(1);
+    // $stuff2 = Stuff::find(2);
 
-    $firstStuffs = $stuff1->gifts;
-    $secondStuffs = $stuff2->gifts;
+    // $firstStuffs = $stuff1->gifts;
+    // $secondStuffs = $stuff2->gifts;
+
+    // return view('welcome', [
+    //     'firstGifts' => $firstGifts,
+    //     'secondGifts' => $secondGifts,
+    //     'firstStuffs' => $firstStuffs,
+    //     'secondStuffs' => $secondStuffs,
+    // ]);
+
+
+
+
+
+
+    /**
+     *  HAS ONE THROUGH / HAS MANY THROUGH
+     */
+    //* USER HAS MANY GIFTS
+
+    // $user = User::create([
+    //     'name' => fake()->name(),
+    //     'email' => fake()->unique()->safeEmail(),
+    //     'password' => Hash::make('password'),
+    // ]);
+
+    // $gift1 = $user->gifts()->create([
+    //     'type' => fake()->word(),
+    // ]);
+
+    // $gift2 = $user->gifts()->create([
+    //     'type' => fake()->word(),
+    // ]);
+
+    // $user = User::first();
+
+    // return view('welcome', [
+    //     'gifts' => $user->gifts
+    // ]);
+
+
+    //* GIFTS BELONGS TO USER
+    // $user = User::first();
+
+    // $userGifts = Gift::where('user_id', $user->id)->get();
+
+    // return view('welcome', [
+    //     'gifts' => $user->gifts,
+    //     'userGifts' => $userGifts,
+    // ]);
+
+
+
+    //* USER HAS MANY STUFFS THROUGH GIFTS
+    $user = User::first();
+
+    $gift1 = $user->gifts()->create([
+        'type' => fake()->word(),
+    ]);
+
+    $stuff1 = $gift1->stuffs()->create([
+        'name' => fake()->word(),
+    ]);
+
+    $gift2 = $user->gifts()->create([
+        'type' => fake()->word(),
+    ]);
+
+    $stuff2 = $gift2->stuffs()->create([
+        'name' => fake()->word(),
+    ]);
+
+    $stuffs = $user->stuffs;
 
     return view('welcome', [
-        'firstGifts' => $firstGifts,
-        'secondGifts' => $secondGifts,
-        'firstStuffs' => $firstStuffs,
-        'secondStuffs' => $secondStuffs,
+        'stuffs' => $stuffs,
     ]);
 });

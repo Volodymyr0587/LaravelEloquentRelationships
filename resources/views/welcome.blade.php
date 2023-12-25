@@ -59,7 +59,7 @@
                     </div> --}}
 
                     {{-- Belongs To Many --}}
-                    <h3 class="text-xl text-center italic my-4">Belongs to Many</h3>
+                    {{-- <h3 class="text-xl text-center italic my-4">Belongs to Many</h3>
 
                     <div class="flex flex-col space-y-4">
                         <div class="flex justify-between">
@@ -97,6 +97,39 @@
                             </p>
                             @foreach ($secondStuffs as $second)
                                 <p class="ml-8">{{ $second->id }} - {{ $second->type }}</p>
+                            @endforeach
+                        </div>
+                    </div> --}}
+
+                    <h3 class="text-xl text-center italic my-4">HAS ONE THROUGH / HAS MANY THROUGH</h3>
+
+                    {{-- <div class="flex flex-col space-y-4">
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                User's Gifts:
+                            </p>
+                            @foreach ($gifts as $gift)
+                                <p class="ml-8">{{ $gift->id }} - {{ $gift->type }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Gift's User Name:
+                            </p>
+                            @foreach ($userGifts as $gift)
+                                <p class="ml-8">{{ $gift->user->id }} - {{ $gift->user->name }}</p>
+                            @endforeach
+                        </div>
+                    </div> --}}
+
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                User's Stuff:
+                            </p>
+                            @foreach ($stuffs as $stuff)
+                                <p class="ml-8">{{ $stuff->id }} - {{ $stuff->name }}</p>
                             @endforeach
                         </div>
                     </div>
