@@ -101,7 +101,7 @@
                         </div>
                     </div> --}}
 
-                    <h3 class="text-xl text-center italic my-4">HAS ONE THROUGH / HAS MANY THROUGH</h3>
+                    {{-- <h3 class="text-xl text-center italic my-4">HAS ONE THROUGH / HAS MANY THROUGH</h3> --}}
 
                     {{-- <div class="flex flex-col space-y-4">
                         <div class="flex justify-between">
@@ -123,13 +123,74 @@
                         </div>
                     </div> --}}
 
-                    <div class="flex flex-col space-y-4">
+                    {{-- <div class="flex flex-col space-y-4">
                         <div class="flex justify-between">
                             <p class="text-green-500">
                                 User's Stuff:
                             </p>
                             @foreach ($stuffs as $stuff)
                                 <p class="ml-8">{{ $stuff->id }} - {{ $stuff->name }}</p>
+                            @endforeach
+                        </div>
+                    </div> --}}
+
+                    <h3 class="text-xl text-center italic my-4">POLYMORPHIC ONE TO MANY</h3>
+
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Message Likes ID:
+                            </p>
+                            @foreach ($messageLikes as $like)
+                                <p class="ml-8">{{ $like->id }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Message Likes Type:
+                            </p>
+                            @foreach ($messageLikes as $like)
+                                <p class="ml-8">{{ $like->likeable_type }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Message Likes Count:
+                            </p>
+                            @foreach ($messageLikes as $like)
+                                <p class="ml-8">{{ $like->count() }}</p>
+                            @endforeach
+                        </div>
+                    </div>
+
+
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Achievement Likes ID:
+                            </p>
+                            @foreach ($achievementLikes as $like)
+                                <p class="ml-8">{{ $like->id }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Achievement Likes Type:
+                            </p>
+                            @foreach ($achievementLikes as $like)
+                                <p class="ml-8">{{ $like->likeable_type }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="flex justify-between">
+                            <p class="text-green-500">
+                                Achievement Likes Count:
+                            </p>
+                            @foreach ($achievementLikes as $like)
+                                <p class="ml-8">{{ $like->count() }}</p>
                             @endforeach
                         </div>
                     </div>

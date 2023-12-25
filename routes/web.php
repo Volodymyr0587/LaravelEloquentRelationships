@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\Character;
 use App\Models\Gift;
-use App\Models\Message;
-use App\Models\Stuff;
 use App\Models\User;
+use App\Models\Stuff;
+use App\Models\Message;
+use App\Models\Character;
+use App\Models\Achievement;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -180,27 +181,110 @@ Route::get('/', function () {
 
 
     //* USER HAS MANY STUFFS THROUGH GIFTS
-    $user = User::first();
+    // $user = User::first();
 
-    $gift1 = $user->gifts()->create([
-        'type' => fake()->word(),
-    ]);
+    // $gift1 = $user->gifts()->create([
+    //     'type' => fake()->word(),
+    // ]);
 
-    $stuff1 = $gift1->stuffs()->create([
-        'name' => fake()->word(),
-    ]);
+    // $stuff1 = $gift1->stuffs()->create([
+    //     'name' => fake()->word(),
+    // ]);
 
-    $gift2 = $user->gifts()->create([
-        'type' => fake()->word(),
-    ]);
+    // $gift2 = $user->gifts()->create([
+    //     'type' => fake()->word(),
+    // ]);
 
-    $stuff2 = $gift2->stuffs()->create([
-        'name' => fake()->word(),
-    ]);
+    // $stuff2 = $gift2->stuffs()->create([
+    //     'name' => fake()->word(),
+    // ]);
 
-    $stuffs = $user->stuffs;
+    // $stuffs = $user->stuffs;
+
+    // return view('welcome', [
+    //     'stuffs' => $stuffs,
+    // ]);
+
+
+
+
+
+    /**
+     *  POLYMORHIC BELONGS TO MANY
+     */
+    //* MESSAGES HAVE LIKES
+    // $user1 = User::create([
+    //     'name' => fake()->name(),
+    //     'email' => fake()->unique()->safeEmail(),
+    //     'password' => Hash::make('password'), // password
+    // ]);
+
+    // $user2 = User::create([
+    //     'name' => fake()->name(),
+    //     'email' => fake()->unique()->safeEmail(),
+    //     'password' => Hash::make('password'), // password
+    // ]);
+
+    // $message1 = $user1->messages()->create([
+    //     'body' => fake()->word(),
+    // ]);
+
+    // $message2 = $user1->messages()->create([
+    //     'body' => fake()->word(),
+    // ]);
+
+    // $message1->likes()->create([
+    //     'user_id' => $user1->id,
+    //     'liked' => 1,
+    // ]);
+
+    // $message2->likes()->create([
+    //     'user_id' => $user2->id,
+    //     'liked' => 1,
+    // ]);
+
+
+
+    //* ACHIEVEMENTS HAVE LIKES
+    // $user1 = User::create([
+    //     'name' => fake()->name(),
+    //     'email' => fake()->unique()->safeEmail(),
+    //     'password' => Hash::make('password'), // password
+    // ]);
+
+    // $user2 = User::create([
+    //     'name' => fake()->name(),
+    //     'email' => fake()->unique()->safeEmail(),
+    //     'password' => Hash::make('password'), // password
+    // ]);
+
+    // $achievement1 = $user1->achievements()->create([
+    //     'type' => fake()->word(),
+    //     'name' => fake()->word(),
+    // ]);
+
+    // $achievement2 = $user1->achievements()->create([
+    //     'type' => fake()->word(),
+    //     'name' => fake()->word(),
+    // ]);
+
+    // $achievement1->likes()->create([
+    //     'user_id' => $user1->id,
+    //     'liked' => 1,
+    // ]);
+
+    // $achievement2->likes()->create([
+    //     'user_id' => $user2->id,
+    //     'liked' => 1,
+    // ]);
+
+    $message = Message::first();
+    $achievement = Achievement::first();
+    $messageLikes = $message->likes;
+    $achievementLikes = $achievement->likes;
 
     return view('welcome', [
-        'stuffs' => $stuffs,
+        'messageLikes' => $messageLikes,
+        'achievementLikes' => $achievementLikes,
     ]);
 });

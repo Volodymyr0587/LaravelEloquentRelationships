@@ -80,4 +80,14 @@ class User extends Authenticatable
    {
        return $this->hasManyThrough(Stuff::class, Gift::class);
    }
+
+   /**
+    * Get all of the achievements for the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function achievements(): HasMany
+    {
+        return $this->hasMany(Achievement::class);
+    }
 }
